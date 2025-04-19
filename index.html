@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIMIEG ENTERPRISES COMPANY LIMITED</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0a5e8f;
+            --secondary: #ff7b00;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --text-light: #f8f9fa;
+            --text-dark: #343a40;
+            --bg-light: #ffffff;
+            --bg-dark: #121212;
+            --transition: all 0.3s ease;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary: #1a8cc7;
+            --secondary: #ff9933;
+            --text-light: #f8f9fa;
+            --text-dark: #e9ecef;
+            --bg-light: #121212;
+            --bg-dark: #343a40;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-light);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            animation: fadeIn 1s ease;
+        }
+
+        .logo img {
+            height: 70px; /* Increased from 50px */
+            margin-right: 15px;
+        }
+
+        .logo-text {
+            font-size: 28px; /* Increased from 24px */
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 16px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover:before {
+            width: 100%;
+        }
+
+        .hamburger, .mobile-nav {
+            display: none;
+        }
+
+        /* Theme Switcher */
+        .theme-switch {
+            position: relative;
+            margin-left: 20px;
+            width: 60px;
+            height: 30px;
+            background-color: var(--bg-dark);
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 0 5px;
+        }
+
+        .theme-switch i {
+            color: #ffcc00;
+            font-size: 16px;
+        }
+
+        .switch-slider {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .active .switch-slider {
+            transform: translateX(30px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: url(logo.jpeg);
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: slideInLeft 1s ease;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: rgb(119, 85, 85);
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #6b196b;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* About Section */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            color: var(--primary);
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color:rgb(39, 68, 131);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 30px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .mission-vision {
+            display: flex;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .mission, .vision {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            margin: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .mission:hover, .vision:hover {
+            transform: translateY(-10px);
+        }
+
+        .values {
+            margin-top: 50px;
+        }
+
+        .values-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .value-item {
+            width: 200px;
+            margin: 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            margin: 0 auto 15px;
+            font-size: 30px;
+            transition: var(--transition);
+        }
+
+        .value-item:hover .value-icon {
+            background-color: var(--secondary);
+            transform: rotateY(180deg);
+        }
+
+        /* Awards Section */
+        .awards-section {
+            background-color: #f9f9f9;
+            padding: 80px 0;
+        }
+
+        .awards-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .award-item {
+            width: 300px;
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .award-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .award-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .award-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .award-content {
+            padding: 20px;
+        }
+
+        .award-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        /* Certificates Section */
+        .certificates-section {
+            padding: 80px 0;
+        }
+
+        .certificates-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .certificate-item {
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .certificate-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .certificate-image {
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .certificate-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .certificate-item:hover .certificate-image img {
+            transform: scale(1.1);
+        }
+
+        .certificate-content {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .certificate-title {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            background-color: var(--primary);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .service-icon i {
+            font-size: 40px;
+            color: white;
+        }
+
+        .service-content {
+            padding: 30px;
+        }
+
+        .service-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-steps {
+            display: flex;
+            overflow-x: auto;
+            margin-top: 15px;
+            padding-bottom: 10px;
+        }
+
+        .project-step {
+            min-width: 120px;
+            height: 80px;
+            margin-right: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .project-step img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-card {
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-image:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+        }
+
+        .team-content {
+            padding: 20px;
+        }
+
+        .team-name {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .team-position {
+            font-size: 14px;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 40px;
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-details div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-details i {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-right: 15px;
+        }
+
+        .contact-form {
+            flex: 2;
+            min-width: 300px;
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 16px;
+            transition: var(--transition);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding: 50px 0 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-about, .footer-links, .footer-contact {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer h4 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer h4:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .social-icons {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 10px;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+            opacity: 0;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 1s ease forwards;
+            opacity: 0;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 1s ease forwards;
+            opacity: 0;
+        }
+
+        .slide-in-up {
+            animation: slideInUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .rotate {
+            animation: rotate 10s linear infinite;
+        }
+
+        /* Scroll Animations */
+        .animated {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animated.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 992px) {
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 20px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .navbar-container {
+                padding: 15px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+                font-size: 24px;
+                cursor: pointer;
+                color: var(--text-dark);
+            }
+
+            .mobile-nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                height: 0;
+                background-color: var(--bg-light);
+                overflow: hidden;
+                transition: height 0.3s ease;
+                z-index: 999;
+                box-shadow: var(--shadow);
+            }
+
+            .mobile-nav.active {
+                height: calc(100vh - 80px);
+                overflow-y: auto;
+            }
+
+            .mobile-nav ul {
+                list-style: none;
+                padding: 20px;
+            }
+
+            .mobile-nav li {
+                margin-bottom: 20px;
+            }
+
+            .mobile-nav a {
+                text-decoration: none;
+                color: var(--text-dark);
+                font-size: 18px;
+                font-weight: 500;
+                display: block;
+                padding: 10px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+            .about-text, .about-image {
+                flex: 100%;
+                padding: 0;
+                margin-bottom: 30px;
+            }
+
+            .hero-content {
+                padding: 0 15px;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .mission, .vision {
+                flex: 100%;
+                margin: 10px 0;
+            }
+
+            .contact-info, .contact-form {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <div class="logo">
+                <!-- Replace with your logo -->
+                <img src="logo.jpeg" alt="BRIMIEG ENTERPRISES Logo">
+                <div class="logo-text">BRIMIEG</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#awards">Awards</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <div class="theme-switch">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                        <div class="switch-slider"></div>
+                    </div>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#awards">Awards</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li>
+                <div class="theme-switch">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                    <div class="switch-slider"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title"> WELCOME TO BRIMIEG ENTERPRISES COMPANY LIMITED</h1>
+                <h2 class="hero-subtitle">Concept to Creation: Construction & Consultancy</h2>
+                <a href="#contact" class="hero-btn pulse">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title animated">About Us</h2>
+            <div class="about-content">
+                <div class="about-text animated slide-in-left">
+                    <p>BRIMIEG ENTERPRISE COMPANY LIMITED is a locally owned Private Limited Construction and Consultancy company registered in Kenya, No. PVT-9XU3E6, certificate of Incorporation, 19 May 2017.</p>
+                    <p>The company is led by Engineer HELLEN ADHIAMBO OUKO, a professional in the field of operation, who is actively involved in the company operations as Director and manages all Projects.</p>
+                    <p>We have a solid reputation for reliability and professional expertise based on the use of varied and modern construction techniques. Our team is vibrant and dynamic, employing diligent service people who are experienced, undoubtedly skilled and knowledgeable.</p>
+                </div>
+                <div class="about-image animated slide-in-right">
+                    <img src="team.jpeg" alt="BRIMIEG Office">
+                </div>
+            </div>
+
+            <div class="mission-vision">
+                <div class="mission animated">
+                    <h3>Our Mission</h3>
+                    <p>To engineer, design and maintain quality, future-ready, sustainable and resilient facilities while offering strategic innovation, cost effective, custom client satisfaction and exceptional quality. In all dealings achieve superior financial returns for the company.</p>
+                </div>
+                <div class="vision animated">
+                    <h3>Our Vision</h3>
+                    <p>To become the most sort for building & construction firm setting benchmarks in excellence and to create an exemplary Centre in national and partner building.</p>
+                </div>
+            </div>
+
+            <div class="values animated">
+                <h3 class="text-center mb-4">Our Core Values</h3>
+                <div class="values-list">
+                    <div class="value-item float">
+                        <div class="value-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h4>Professionalism</h4>
+                    </div>
+                    <div class="value-item float">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4>Integrity</h4>
+                    </div>
+                    <div class="value-item float">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Teamwork</h4>
+                    </div>
+                    <div class="value-item float">
+                        <div class="value-icon">
+                            <i class="fas fa-check-double"></i>
+                        </div>
+                        <h4>Quality Performance</h4>
+                    </div>
+                    <div class="value-item float">
+                        <div class="value-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h4>Sustainability</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section (Completed) -->
+<section id="awards" class="section awards-section">
+    <div class="container">
+        <h2 class="section-title animated">Our Awards</h2>
+        <div class="awards-container">
+            <!-- Award 1 -->
+            <div class="award-item animated slide-in-up">
+                <div class="award-image">
+                    <img src="/rewards/award1.jpeg" alt="Excellence in Construction Award">
+                </div>
+                <div class="award-content">
+                    <h3 class="award-title">Excellence in Construction</h3>
+                    <p>Recognized for outstanding construction quality and innovation in the Kenyan construction industry.</p>
+                </div>
+            </div>
+            <!-- Award 2 -->
+            <div class="award-item animated slide-in-up">
+                <div class="award-image">
+                    <img src="/rewards/award2.jpeg" alt="Sustainable Building Award">
+                </div>
+                <div class="award-content">
+                    <h3 class="award-title">Sustainable Building Award</h3>
+                    <p>Honored for our commitment to environmentally friendly construction practices and sustainable design.</p>
+                </div>
+            </div>
+            <!-- Award 3 -->
+            <div class="award-item animated slide-in-up">
+                <div class="award-image">
+                    <img src="/rewards/award3.jpeg" alt="Client Satisfaction Excellence">
+                </div>
+                <div class="award-content">
+                    <h3 class="award-title">Client Satisfaction Excellence</h3>
+                    <p>Recognized for consistently exceeding client expectations and delivering superior project outcomes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Certificates Section -->
+<section id="certificates" class="section certificates-section">
+    <div class="container">
+        <h2 class="section-title animated">Our Certifications</h2>
+        <div class="certificates-container">
+            <!-- Certificate 1 -->
+            <div class="certificate-item animated fade-in">
+                <div class="certificate-image">
+                    <img src="/certificates/cert2.jpeg" alt="ISO 9001:2015 Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">NCA Category</h3>
+                    <p>Certificate Of Registration</p>
+                </div>
+            </div>
+            <!-- Certificate 2 -->
+            <div class="certificate-item animated fade-in">
+                <div class="certificate-image">
+                    <img src="/certificates/cert6.jpeg" alt="ISO 14001:2015 Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Access to Goverment</h3>
+                    <p>Certificate Of Registration</p>
+                </div>
+            </div>
+            <!-- Certificate 3 -->
+            <div class="certificate-item animated fade-in">
+                <div class="certificate-image">
+                    <img src="/certificates/cert1.jpeg" alt="OHSAS 18001 Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">KRA Category</h3>
+                    <p>Tax Compliance Certificate</p>
+                </div>
+            </div>
+            <!-- Certificate 4 -->
+            <div class="certificate-item animated fade-in">
+                <div class="certificate-image">
+                    <img src="/certificates/cert4.jpeg" alt="NCA Category 3 Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">NCA Category</h3>
+                    <p>National Construction Authority</p>
+                </div>
+            </div>
+            <!-- Certificate 5 -->
+            <div class="certificate-item animated fade-in">
+                <div class="certificate-image">
+                    <img src="/certificates/cert3.jpeg" alt="AGPO Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">KRA Certificate</h3>
+                    <p>PIN Certificate</p>
+                </div>
+            </div>
+            <!-- Certificate 6 -->
+            <div class="certificate-item animated fade-in">
+                <div class="certificate-image">
+                    <img src="/certificates/cert5.jpeg" alt="EBK Registration Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Certificate Of Incorporation</h3>
+                    <p>Engineers Board of Kenya</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="section">
+    <div class="container">
+        <h2 class="section-title animated">Our Services</h2>
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card animated slide-in-up">
+                <div class="service-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Building Construction</h3>
+                    <p>Complete building solutions from foundation to finishing, specializing in residential, commercial, and industrial structures.</p>
+                </div>
+            </div>
+            <!-- Service 2 -->
+            <div class="service-card animated slide-in-up">
+                <div class="service-icon">
+                    <i class="fas fa-road"></i>
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Infrastructure Development</h3>
+                    <p>Construction of roads, bridges, drainage systems, and other critical infrastructure components.</p>
+                </div>
+            </div>
+            <!-- Service 3 -->
+            <div class="service-card animated slide-in-up">
+                <div class="service-icon">
+                    <i class="fas fa-drafting-compass"></i>
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Engineering Design</h3>
+                    <p>Comprehensive design services including architectural, structural, electrical, and mechanical engineering.</p>
+                </div>
+            </div>
+            <!-- Service 4 -->
+            <div class="service-card animated slide-in-up">
+                <div class="service-icon">
+                    <i class="fas fa-hard-hat"></i>
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Project Management</h3>
+                    <p>End-to-end project oversight ensuring timely delivery, quality control, and budget management.</p>
+                </div>
+            </div>
+            <!-- Service 5 -->
+            <div class="service-card animated slide-in-up">
+                <div class="service-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Interior Finishing</h3>
+                    <p>Expert interior works including tiling, painting, cabinetry, and custom installations.</p>
+                </div>
+            </div>
+            <!-- Service 6 -->
+            <div class="service-card animated slide-in-up">
+                <div class="service-icon">
+                    <i class="fas fa-comments-dollar"></i>
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Construction Consultancy</h3>
+                    <p>Professional advice on construction matters, feasibility studies, and technical evaluations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="section">
+    <div class="container">
+        <h2 class="section-title animated">Our Projects</h2>
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card animated slide-in-up">
+                <div class="project-image">
+                    <img src="/project1/step5.jpeg" alt="Commercial Building Project">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Modern Commercial Complex</h3>
+                    <p>A state-of-the-art commercial building in Nairobi CBD featuring sustainable design elements and energy-efficient systems.</p>
+                    <div class="project-steps">
+                        <div class="project-step">
+                            <img src="project1/step3.jpeg" alt="Planning Phase">
+                        </div>
+                        <div class="project-step">
+                            <img src="/project1/step4.jpeg" alt="Foundation Work">
+                        </div>
+                        <div class="project-step">
+                            <img src="/project1/step5.jpeg" alt="Completed Building">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="project-card animated slide-in-up">
+                <div class="project-image">
+                    <img src="/house1.jpeg" alt="Residential Development">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Residential Building</h3>
+                    <p>Location: Kisumu County</p>
+                    <p> modern residential building with premium finishes and sustainable features..</p>
+                    <div class="project-steps">
+                        <div class="project-step">
+                            <img src="/project1/step2.jpeg" alt="Design Phase">
+                        </div>
+                        <div class="project-step">
+                            <img src="/project1/step3.jpeg" alt="Construction Phase">
+                        </div>
+                        <div class="project-step">
+                            <img src="/house1.jpeg" alt="Completed Estate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="project-card animated slide-in-up">
+                <div class="project-image">
+                    <img src="/project2/step5.jpeg" alt="School Renovation">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">School Renovation</h3>
+                    <p>Complete renovation and expansion of educational facilities with modern infrastructure</p>
+                    <div class="project-steps">
+                        <div class="project-step">
+                            <img src="/project2/step2.jpeg" alt="Groundwork">
+                        </div>
+                        <div class="project-step">
+                            <img src="/project2/step4.jpeg" alt="Paving">
+                        </div>
+                        <div class="project-step">
+                            <img src="/project2/step5.jpeg" alt="Completed Road">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Team Section -->
+    <section id="team" class="section">
+        <div class="container">
+            <h2 class="section-title animated">Our Team</h2>
+            <div class="team-grid">
+                <!-- Engineer Hellen -->
+                <div class="team-card animated">
+                    <div class="team-image">
+                        <img src="profile.jpeg" alt="Engineer Hellen Adhiambo Ouko">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Engineer Hellen Adhiambo Ouko</h3>
+                        <p class="team-position">Director</p>
+                        <p>Bachelor in Civil Engineering with extensive experience in project management and construction.</p>
+                    </div>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="team-card animated">
+                    <div class="team-image">
+                        <img src="/logo.jpeg" alt="OGUTU">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Tonny Odhiambo</h3>
+                        <p class="team-position">Forman</p>
+                        <p>Bachelor in Civil and Structural Engineering Construction</p>
+                    </div>
+                </div>
+                <!-- Team Member 3 -->
+                <div class="team-card animated">
+                    <div class="team-image">
+                        <img src="/logo.jpeg" alt="VINCENT">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Caleb Opiyo</h3>
+                        <p class="team-position">Secretary</p>
+                        <p>Diploma in information Technology.</p>
+                    </div>
+                </div>
+                <!-- Team Member 4 -->
+                <div class="team-card animated">
+                    <div class="team-image">
+                        <img src="/logo.jpeg" alt="FRED">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Fred Onunga</h3>
+                        <p class="team-position">Transport Manager</p>
+                        <p>certificate in Driving</p>
+                    </div>
+                </div>
+                <!-- Team Member 5-->
+                <div class="team-card animated">
+                    <div class="team-image">
+                        <img src="/logo.jpeg" alt="FRED">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="team-name">Dennis Omollo Ojwang'</h3>
+                        <p class="team-position">Electric Engineer</p>
+                        <p>Diploma in Electrical and Electronics</p>
+                    </div>
+                </div>
+            <!-- Team Member 6(Clackson Ager) -->
+            <div class="team-card animated fade-in">
+                <div class="team-image">
+                    <img src="/logo.jpeg" alt="Clackson Ager">
+                </div>
+                <div class="team-content">
+                    <h3 class="team-name">Clackson Ager</h3>
+                    <p class="team-position">Computer expertise</p>
+                    <p>Bachelor of Science in statistics and Programming.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="section">
+    <div class="container">
+        <h2 class="section-title animated">Contact Us</h2>
+        <div class="contact-container animated fade-in">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <div class="contact-details">
+                    <div>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>P.O. BOX 8069-40112, Dago, KISUMU</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-phone"></i>
+                        <span>0721917437, 0789997182</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-envelope"></i>
+                        <span>brimiegecompanyltd@gmail.com</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-clock"></i>
+                        <span>You can reach us Anytime</span>
+                    </div>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message to BRIMIEG</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container footer-container">
+        <div class="footer-about">
+            <h4>About BRIMIEG</h4>
+            <p>BRIMIEG ENTERPRISE COMPANY LIMITED is a leading construction and consultancy firm in Kenya committed to excellence, integrity, and innovation in all our projects.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-contact">
+            <h4>Contact Info</h4>
+            <p><i class="fas fa-map-marker-alt"></i> P.O. BOX 8069-40112, Dago, KISUMU</p>
+            <p><i class="fas fa-phone"></i> 0721917437, 0789997182</p>
+            <p><i class="fas fa-envelope"></i> brimiegecompanyltd@gmail.com</p>
+        </div>
+    </div>
+    <div class="container footer-bottom">
+        <p>&copy; 2025 BRIMIEG ENTERPRISES COMPANY LIMITED. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<!-- JavaScript for Theme Switching and Animations -->
+<script>
+    // Theme Switcher
+    const themeSwitch = document.querySelectorAll('.theme-switch');
+    
+    themeSwitch.forEach(switcher => {
+        switcher.addEventListener('click', () => {
+            document.body.setAttribute('data-theme', 
+                document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            
+            document.querySelectorAll('.theme-switch').forEach(sw => {
+                sw.classList.toggle('active');
+            });
+        });
+    });
+
+    // Mobile Navigation
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
+    
+    hamburger.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+        hamburger.querySelector('i').classList.toggle('fa-bars');
+        hamburger.querySelector('i').classList.toggle('fa-times');
+    });
+
+    // Scroll Animations
+    window.addEventListener('scroll', () => {
+        const animatedElements = document.querySelectorAll('.animated');
+        
+        animatedElements.forEach(element => {
+            const position = element.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.2;
+            
+            if (position < screenPosition) {
+                element.classList.add('show');
+            }
+        });
+    });
+
+    // Trigger initial animation for elements in viewport on load
+    window.addEventListener('load', () => {
+        const animatedElements = document.querySelectorAll('.animated');
+        
+        animatedElements.forEach(element => {
+            const position = element.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.2;
+            
+            if (position < screenPosition) {
+                element.classList.add('show');
+            }
+        });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+            
+            // Close mobile nav if open
+            if (mobileNav.classList.contains('active')) {
+                mobileNav.classList.remove('active');
+                hamburger.querySelector('i').classList.add('fa-bars');
+                hamburger.querySelector('i').classList.remove('fa-times');
+            }
+        });
+    });
+</script>
+</body>
+</html>
