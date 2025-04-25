@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIMIEG ENTERPRISES - Presentation</title>
+    <link rel="icon" type="image/jpeg" href="/logo2.jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0a5e8f;
+            --secondary: #ff7b00;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --text-light: #f8f9fa;
+            --text-dark: #343a40;
+            --bg-light: #ffffff;
+            --bg-dark: #121212;
+            --transition: all 0.5s ease;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .presentation-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .presentation-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease, transform 1.5s ease;
+            transform: scale(0.95);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .presentation-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 1;
+        }
+
+        .presentation-slide.zooming {
+            transform: scale(1.05);
+        }
+
+        .slide-content {
+            max-width: 900px;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: transform 1s ease, opacity 1s ease;
+        }
+
+        .active .slide-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .slide-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .slide-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--secondary);
+        }
+
+        .slide-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Hero Slide */
+        #hero-slide {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), url('logo3.jpeg'));
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        #hero-slide .slide-content {
+            background-color: rgba(10, 94, 143, 0.8);
+            color: white;
+        }
+
+        #hero-slide .slide-title {
+            color: white;
+            font-size: 4rem;
+            animation: pulse 2s infinite;
+        }
+
+        /* About Slide */
+        #about-slide {
+            background-color: #f0f8ff;
+        }
+
+        /* Awards Slide */
+        #awards-slide {
+            background-color: #fffaf0;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .award-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .award-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .award-image {
+            height: 150px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .award-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Certificates Slide */
+        #certificates-slide {
+            background-color: #f5f5f5;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .certificate-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .certificate-card:hover {
+            transform: scale(1.05);
+        }
+
+        .certificate-image {
+            height: 120px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .certificate-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Services Slide */
+        #services-slide {
+            background-color: #e6f7ff;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .service-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Projects Slide */
+        #projects-slide {
+            background-color: #f9f9f9;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        /* Team Slide */
+        #team-slide {
+            background-color: #f0f0f0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .team-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-content {
+            padding: 20px;
+        }
+
+        /* Contact Slide */
+        #contact-slide {
+            background-color: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('logo3.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        #contact-slide .slide-content {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--text-dark);
+            max-width: 800px;
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        /* Navigation Dots */
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 2px solid var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-dot.active {
+            background-color: var(--primary);
+            transform: scale(1.3);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--secondary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide-title {
+                font-size: 2rem;
+            }
+            
+            .slide-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .slide-content {
+                padding: 20px;
+                width: 90%;
+            }
+            
+            .nav-dots {
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="presentation-container">
+        <!-- Hero Slide -->
+        <div class="presentation-slide active" id="hero-slide">
+            <div class="slide-content">
+                <h1 class="slide-title">BRIMIEG ENTERPRISES</h1>
+                <h2 class="slide-subtitle">Building the Future with Excellence</h2>
+                <p class="slide-text">A premier construction and consultancy company committed to quality and innovation</p>
+                <img src="logo.jpeg" alt="BRIMIEG Logo" style="max-height: 100px; margin: 20px auto;">
+            </div>
+        </div>
+
+        <!-- About Slide -->
+        <div class="presentation-slide" id="about-slide">
+            <div class="slide-content">
+                <h1 class="slide-title">About Us</h1>
+                <p class="slide-text">BRIMIEG ENTERPRISE COMPANY LIMITED is a locally owned Private Limited Construction and Consultancy company registered in Kenya, No. PVT-9XU3E6, certificate of Incorporation, 19 May 2017.</p>
+                <p class="slide-text">The company is led by Engineer HELLEN ADHIAMBO OUKO, a professional in the field of operation, who is actively involved in the company operations as Director and manages all Projects.</p>
+                <div style="display: flex; gap: 20px; margin-top: 30px; flex-wrap: wrap; justify-content: center;">
+                    <div style="flex: 1; min-width: 250px; background: white; padding: 20px; border-radius: 10px; box-shadow: var(--shadow);">
+                        <h3 style="color: var(--primary); margin-bottom: 15px;">Our Mission</h3>
+                        <p>To engineer, design and maintain quality, future-ready, sustainable and resilient facilities while offering strategic innovation, cost effective, custom client satisfaction and exceptional quality.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 250px; background: white; padding: 20px; border-radius: 10px; box-shadow: var(--shadow);">
+                        <h3 style="color: var(--primary); margin-bottom: 15px;">Our Vision</h3>
+                        <p>To become the most sought for building & construction firm setting benchmarks in excellence and to create an exemplary Centre in national and partner building.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Awards Slide -->
+        <div class="presentation-slide" id="awards-slide">
+            <div class="slide-content">
+                <h1 class="slide-title">Our Awards</h1>
+                <p class="slide-text">Recognized for excellence in construction and innovation</p>
+                
+                <div class="awards-grid">
+                    <div class="award-card">
+                        <div class="award-image">
+                            <img src="/rewards/award1.jpeg" alt="Excellence in Construction Award">
+                        </div>
+                        <h3>Excellence in Construction</h3>
+                        <p>Recognized for outstanding construction quality and innovation in the Kenyan construction industry.</p>
+                    </div>
+                    
+                    <div class="award-card">
+                        <div class="award-image">
+                            <img src="/rewards/award2.jpeg" alt="Sustainable Building Award">
+                        </div>
+                        <h3>Sustainable Building Award</h3>
+                        <p>Honored for our commitment to environmentally friendly construction practices.</p>
+                    </div>
+                    
+                    <div class="award-card">
+                        <div class="award-image">
+                            <img src="/rewards/award3.jpeg" alt="Client Satisfaction Excellence">
+                        </div>
+                        <h3>Client Satisfaction Excellence</h3>
+                        <p>Recognized for consistently exceeding client expectations and delivering superior project outcomes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificates Slide -->
+        <div class="presentation-slide" id="certificates-slide">
+            <div class="slide-content">
+                <h1 class="slide-title">Our Certifications</h1>
+                <p class="slide-text">Fully licensed and accredited for all construction services</p>
+                
+                <div class="certificates-grid">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="/certificates/cert2.jpeg" alt="NCA Category">
+                        </div>
+                        <h4>NCA Category</h4>
+                        <p>Certificate Of Registration</p>
+                    </div>
+                    
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="/certificates/cert6.jpeg" alt="Access to Government">
+                        </div>
+                        <h4>Access to Government</h4>
+                        <p>Certificate Of Registration</p>
+                    </div>
+                    
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="/certificates/cert1.jpeg" alt="KRA Category">
+                        </div>
+                        <h4>KRA Category</h4>
+                        <p>Tax Compliance Certificate</p>
+                    </div>
+                    
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="/certificates/cert4.jpeg" alt="NCA Category">
+                        </div>
+                        <h4>NCA Category</h4>
+                        <p>National Construction Authority</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Slide -->
+        <div class="presentation-slide" id="services-slide">
+            <div class="slide-content">
+                <h1 class="slide-title">Our Services</h1>
+                <p class="slide-text">Comprehensive construction and consultancy solutions</p>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3>Building Construction</h3>
+                        <p>Complete building solutions from foundation to finishing, specializing in residential, commercial, and industrial structures.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-road"></i>
+                        </div>
+                        <h3>Infrastructure Development</h3>
+                        <p>Construction of roads, bridges, drainage systems, and other critical infrastructure components.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-drafting-compass"></i>
+                        </div>
+                        <h3>Engineering Design</h3>
+                        <p>Comprehensive design services including architectural, structural, electrical, and mechanical engineering.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <h3>Project Management</h3>
+                        <p>End-to-end project oversight ensuring timely delivery, quality control, and budget management.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Slide -->
+        <div class="presentation-slide" id="projects-slide">
+            <div class="slide-content">
+                <h1 class="slide-title">Our Projects</h1>
+                <p class="slide-text">Showcasing our completed and ongoing construction projects</p>
+                
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="/project1/step5.jpeg" alt="Commercial Building Project">
+                        </div>
+                        <div class="project-content">
+                            <h3>Modern Commercial Complex</h3>
+                            <p>A state-of-the-art commercial building in Nairobi CBD featuring sustainable design elements.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="/house1.jpeg" alt="Residential Development">
+                        </div>
+                        <div class="project-content">
+                            <h3>Residential Building</h3>
+                            <p>Location: Kisumu County - modern residential building with premium finishes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="/project5/step3.jpeg" alt="Road Works">
+                        </div>
+                        <div class="project-content">
+                            <h3>Road Works</h3>
+                            <p>Construction and rehabilitation of road surfaces to enhance transport efficiency.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Slide -->
+        <div class="presentation-slide" id="team-slide">
+            <div class="slide-content">
+                <h1 class="slide-title">Our Team</h1>
+                <p class="slide-text">Meet the professionals behind BRIMIEG's success</p>
+                
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="profile2.jpeg" alt="Engineer Hellen Adhiambo Ouko">
+                        </div>
+                        <div class="team-content">
+                            <h3>Engineer Hellen Adhiambo Ouko</h3>
+                            <p class="team-position">Director</p>
+                            <p>Bachelor in Civil Engineering with extensive experience in project management.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="/logo3.jpeg" alt="Tonny Odhiambo">
+                        </div>
+                        <div class="team-content">
+                            <h3>Tonny Odhiambo</h3>
+                            <p class="team-position">Foreman</p>
+                            <p>Bachelor in Civil and Structural Engineering Construction</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="/logo3.jpeg" alt="Caleb Opiyo">
+                        </div>
+                        <div class="team-content">
+                            <h3>Caleb Opiyo</h3>
+                            <p class="team-position">Secretary</p>
+                            <p>Diploma in information Technology.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Slide -->
+        <div class="presentation-slide" id="contact-slide">
+            <div class="slide-content">
+                <h1 class="slide-title">Contact Us</h1>
+                <p class="slide-text">Get in touch with BRIMIEG Enterprises for your construction needs</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Address</h4>
+                            <p>P.O. BOX 8069-40112, Dago, KISUMU</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>0721917437, 0789997182</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>brimiegecompanyltd@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px; display: flex; justify-content: center; gap: 15px;">
+                    <a href="#" style="width: 40px; height: 40px; background-color: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" style="width: 40px; height: 40px; background-color: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" style="width: 40px; height: 40px; background-color: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-dots">
+        <div class="nav-dot active" data-slide="0"></div>
+        <div class="nav-dot" data-slide="1"></div>
+        <div class="nav-dot" data-slide="2"></div>
+        <div class="nav-dot" data-slide="3"></div>
+        <div class="nav-dot" data-slide="4"></div>
+        <div class="nav-dot" data-slide="5"></div>
+        <div class="nav-dot" data-slide="6"></div>
+        <div class="nav-dot" data-slide="7"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.presentation-slide');
+            const dots = document.querySelectorAll('.nav-dot');
+            const progressBar = document.getElementById('progressBar');
+            let currentSlide = 0;
+            let isPlaying = true;
+            let slideInterval;
+            const slideDuration = 8000; // 8 seconds per slide
+            
+            // Initialize the presentation
+            function initPresentation() {
+                // Start with the first slide active
+                showSlide(currentSlide);
+                
+                // Start auto-play
+                startAutoPlay();
+                
+                // Add click event to dots
+                dots.forEach(dot => {
+                    dot.addEventListener('click', function() {
+                        const slideIndex = parseInt(this.getAttribute('data-slide'));
+                        goToSlide(slideIndex);
+                    });
+                });
+                
+                // Pause on hover (optional)
+                document.querySelector('.presentation-container').addEventListener('mouseenter', pauseAutoPlay);
+                document.querySelector('.presentation-container').addEventListener('mouseleave', startAutoPlay);
+                
+                // Keyboard navigation
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'ArrowRight') {
+                        nextSlide();
+                    } else if (e.key === 'ArrowLeft') {
+                        prevSlide();
+                    } else if (e.key === ' ') {
+                        // Space to toggle play/pause
+                        if (isPlaying) {
+                            pauseAutoPlay();
+                        } else {
+                            startAutoPlay();
+                        }
+                    }
+                });
+            }
+            
+            // Show a specific slide
+            function showSlide(index) {
+                // Hide all slides
+                slides.forEach(slide => {
+                    slide.classList.remove('active', 'zooming');
+                });
+                
+                // Show the selected slide
+                slides[index].classList.add('active');
+                
+                // Start zoom animation
+                setTimeout(() => {
+                    slides[index].classList.add('zooming');
+                }, 500);
+                
+                // Update dots
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[index].classList.add('active');
+                
+                // Reset and animate progress bar
+                progressBar.style.width = '0%';
+                progressBar.style.transition = 'none';
+                setTimeout(() => {
+                    progressBar.style.transition = `width ${slideDuration/1000}s linear`;
+                    progressBar.style.width = '100%';
+                }, 50);
+            }
+            
+            // Go to next slide
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+            
+            // Go to previous slide
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            }
+            
+            // Go to specific slide
+            function goToSlide(index) {
+                currentSlide = index;
+                showSlide(currentSlide);
+            }
+            
+            // Start auto-play
+            function startAutoPlay() {
+                if (slideInterval) clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, slideDuration);
+                isPlaying = true;
+            }
+            
+            // Pause auto-play
+            function pauseAutoPlay() {
+                clearInterval(slideInterval);
+                isPlaying = false;
+                progressBar.style.transition = 'none';
+            }
+            
+            // Initialize the presentation
+            initPresentation();
+            
+            // Add animation to elements when they become visible
+            const animateOnScroll = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.slide-content').forEach(content => {
+                animateOnScroll.observe(content);
+            });
+        });
+    </script>
+</body>
+</html>

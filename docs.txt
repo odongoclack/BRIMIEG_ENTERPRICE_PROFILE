@@ -396,187 +396,57 @@
             color: var(--primary);
         }
 
-       /* Certificate Section Styling */
-.certificates-section {
-    padding: 80px 0;
-    background-color: #f9f9f9;
-}
+        /* Certificates Section */
+        .certificates-section {
+            padding: 80px 0;
+        }
 
-.section-title {
-    text-align: center;
-    margin-bottom: 50px;
-    font-size: 2.5rem;
-    font-weight: 700;
-    position: relative;
-    color: #333;
-}
+        .certificates-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
 
-.section-title:after {
-    content: '';
-    position: absolute;
-    width: 100px;
-    height: 4px;
-    background: linear-gradient(90deg, #3498db, #2c3e50);
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 2px;
-}
+        .certificate-item {
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
 
-.certificates-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
+        .certificate-item:hover {
+            transform: translateY(-10px);
+        }
 
-.certificate-card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
+        .certificate-image {
+            height: 180px;
+            overflow: hidden;
+            cursor: pointer;
+        }
 
-.certificate-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
+        .certificate-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
 
-.certificate-header {
-    background: linear-gradient(135deg, #3498db, #2c3e50);
-    color: white;
-    padding: 25px 20px;
-    text-align: center;
-    position: relative;
-}
+        .certificate-item:hover .certificate-image img {
+            transform: scale(1.1);
+        }
 
-.certificate-header h3 {
-    margin: 0;
-    font-size: 1.2rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+        .certificate-content {
+            padding: 15px;
+            text-align: center;
+        }
 
-.authority-logo {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 15px;
-    background: white;
-    border-radius: 50%;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
+        .certificate-title {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
 
-.authority-logo img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-
-.certificate-body {
-    padding: 25px 20px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.certificate-type {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #2c3e50;
-    margin-bottom: 8px;
-}
-
-.certificate-desc {
-    font-size: 0.95rem;
-    color: #666;
-    line-height: 1.5;
-    margin-bottom: 15px;
-}
-
-.certificate-badge {
-    text-align: right;
-    margin-top: auto;
-}
-
-.verified-badge {
-    display: inline-block;
-    background-color: #2ecc71;
-    color: white;
-    padding: 5px 15px;
-    border-radius: 30px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* Animation classes */
-.animated {
-    opacity: 0;
-    animation-duration: 1s;
-    animation-fill-mode: both;
-}
-
-.fade-in {
-    animation-name: fadeIn;
-    animation-timing-function: ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Add animation delay to each certificate */
-.certificate-card:nth-child(1) { animation-delay: 0.1s; }
-.certificate-card:nth-child(2) { animation-delay: 0.2s; }
-.certificate-card:nth-child(3) { animation-delay: 0.3s; }
-.certificate-card:nth-child(4) { animation-delay: 0.4s; }
-.certificate-card:nth-child(5) { animation-delay: 0.5s; }
-.certificate-card:nth-child(6) { animation-delay: 0.6s; }
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .certificates-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .certificates-section {
-        padding: 50px 0;
-    }
-    
-    .certificates-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .certificate-card {
-        max-width: 320px;
-        margin: 0 auto;
-    }
-}
         /* Services Section */
         .services-grid {
             display: grid;
@@ -1368,117 +1238,75 @@
     </div>
 </section>
 
-
 <!-- Certificates Section -->
 <section id="certificates" class="section certificates-section">
     <div class="container">
         <h2 class="section-title animated">Our Certifications</h2>
-        <div class="certificates-grid">
-            <!-- Certificate 1: KRA PIN Certificate -->
-            <div class="certificate-card animated fade-in">
-                <div class="certificate-header">
-                    <!-- Only showing logo, not full certificate -->
-                    <div class="authority-logo">
-                        <img src="/certificates/cert3.jpeg" alt="KRA PIN Certificate" class="certificate-logo">
-                    </div>
-                    <h3>Kenya Revenue Authority</h3>
+        <div class="certificates-container">
+            <!-- Certificate 1 -->
+            <div class="certificate-item animated fade-in">
+                <div class="certificate-image">
+                    <img src="/certificates/cert2.jpeg" alt="ISO 9001:2015 Certificate">
                 </div>
-                <div class="certificate-body">
-                    <p class="certificate-type">PIN Certificate</p>
-                    <p class="certificate-desc">Registered for VAT & Income Tax</p>
-                    <div class="certificate-badge">
-                        <span class="verified-badge">Verified</span>
-                    </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">NCA Category</h3>
+                    <p>Certificate Of Registration</p>
                 </div>
             </div>
-            
-            <!-- Certificate 2: Certificate of Incorporation -->
-            <div class="certificate-card animated fade-in">
-                <div class="certificate-header">
-                    <div class="authority-logo">
-                        <img src="/certificates/cert5.jpeg" alt="Certificate of Incorporation" class="certificate-logo">
-                    </div>
-                    <h3>Business Registration</h3>
+            <!-- Certificate 2 -->
+            <div class="certificate-item animated fade-in">
+                <div class="certificate-image">
+                    <img src="/certificates/cert6.jpeg" alt="ISO 14001:2015 Certificate">
                 </div>
-                <div class="certificate-body">
-                    <p class="certificate-type">Certificate of Incorporation</p>
-                    <p class="certificate-desc">Private Limited Company</p>
-                    <div class="certificate-badge">
-                        <span class="verified-badge">Verified</span>
-                    </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Access to Goverment</h3>
+                    <p>Certificate Of Registration</p>
                 </div>
             </div>
-            
-            <!-- Certificate 3: AGPO Certificate -->
-            <div class="certificate-card animated fade-in">
-                <div class="certificate-header">
-                    <div class="authority-logo">
-                        <img src="/certificates/cert6.jpeg" alt="AGPO Certificate" class="certificate-logo">
-                    </div>
-                    <h3>Government Procurement</h3>
+            <!-- Certificate 3 -->
+            <div class="certificate-item animated fade-in">
+                <div class="certificate-image">
+                    <img src="/certificates/cert1.jpeg" alt="OHSAS 18001 Certificate">
                 </div>
-                <div class="certificate-body">
-                    <p class="certificate-type">AGPO Registration</p>
-                    <p class="certificate-desc">Owned Business</p>
-                    <div class="certificate-badge">
-                        <span class="verified-badge">Verified</span>
-                    </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">KRA Category</h3>
+                    <p>Tax Compliance Certificate</p>
                 </div>
             </div>
-            
-            <!-- Certificate 4: NCA Registration Certificate -->
-            <div class="certificate-card animated fade-in">
-                <div class="certificate-header">
-                    <div class="authority-logo">
-                        <img src="/certificates/cert2.jpeg" alt="NCA Certificate" class="certificate-logo">
-                    </div>
-                    <h3>National Construction Authority</h3>
+            <!-- Certificate 4 -->
+            <div class="certificate-item animated fade-in">
+                <div class="certificate-image">
+                    <img src="/certificates/cert4.jpeg" alt="NCA Category 3 Certificate">
                 </div>
-                <div class="certificate-body">
-                    <p class="certificate-type">NCA Registration</p>
-                    <p class="certificate-desc">Building Works Contractor</p>
-                    <div class="certificate-badge">
-                        <span class="verified-badge">Verified</span>
-                    </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">NCA Category</h3>
+                    <p>National Construction Authority</p>
                 </div>
             </div>
-            
-            <!-- Certificate 5: NCA Practicing License -->
-            <div class="certificate-card animated fade-in">
-                <div class="certificate-header">
-                    <div class="authority-logo">
-                        <img src="/certificates/cert4.jpeg" alt="NCA License" class="certificate-logo">
-                    </div>
-                    <h3>National Construction Authority</h3>
+            <!-- Certificate 5 -->
+            <div class="certificate-item animated fade-in">
+                <div class="certificate-image">
+                    <img src="/certificates/cert3.jpeg" alt="AGPO Certificate">
                 </div>
-                <div class="certificate-body">
-                    <p class="certificate-type">Contractor Practicing License</p>
-                    <p class="certificate-desc">NCA category</p>
-                    <div class="certificate-badge">
-                        <span class="verified-badge">Verified</span>
-                    </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">KRA Certificate</h3>
+                    <p>PIN Certificate</p>
                 </div>
             </div>
-            
-            <!-- Certificate 6: Tax Compliance Certificate -->
-            <div class="certificate-card animated fade-in">
-                <div class="certificate-header">
-                    <div class="authority-logo">
-                        <img src="/certificates/cert1.jpeg" alt="Tax Compliance Certificate" class="certificate-logo">
-                    </div>
-                    <h3>Kenya Revenue Authority</h3>
+            <!-- Certificate 6 -->
+            <div class="certificate-item animated fade-in">
+                <div class="certificate-image">
+                    <img src="/certificates/cert5.jpeg" alt="EBK Registration Certificate">
                 </div>
-                <div class="certificate-body">
-                    <p class="certificate-type">Tax Compliance Certificate</p>
-                    <p class="certificate-desc">Fully Compliant Taxpayer</p>
-                    <div class="certificate-badge">
-                        <span class="verified-badge">Verified</span>
-                    </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Certificate Of Incorporation</h3>
+                    <p>Engineers Board of Kenya</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 <!-- Services Section -->
 <section id="services" class="section">
     <div class="container">
@@ -1761,7 +1589,6 @@
         </div>
     </div>
 </section>
-
 
 <!-- Contact Section -->
 <section id="contact" class="section">
