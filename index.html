@@ -165,237 +165,640 @@
         }
 
         /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            background: url('logo3.jpeg');
-            background-size: cover;
-            background-position: center;
-            color: var(--text-light);
-            position: relative;
-            overflow: hidden;
-        }
+/* Hero Section with Video Background and Typing Animation */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    overflow: hidden;
+}
 
-        .hero-content {
-            max-width: 800px;
-            margin-top: 0px;
-            animation: slideInLeft 1s ease;
-        }
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
 
-        .hero-title {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: rgb(13, 70, 224);
-        }
+#bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
 
-        .hero-subtitle {
-            font-size: 24px;
-            margin-bottom: 30px;
-            color: rgb(17, 24, 129);
-        }
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 20px;
+}
 
-        /* Animated text */
-        .animated-text {
-            display: inline-block;
-            overflow: hidden;
-        }
+.hero-text {
+    animation: fadeInUp 1s ease forwards;
+}
 
-        .animated-text span {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUpIn 0.8s forwards;
-        }
+.company-name {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
 
-        @keyframes fadeUpIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+.typewriter-container {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .hero-btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: var(--secondary);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
+.typewriter-prefix {
+    margin-right: 8px;
+}
 
-        .hero-btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-        }
+.typewriter-text {
+    color: var(--primary);
+    position: relative;
+}
+
+.typewriter-cursor {
+    display: inline-block;
+    margin-left: 3px;
+    animation: blink 0.7s infinite;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.5s forwards;
+}
+
+.hero-cta {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    opacity: 0;
+    animation: fadeIn 1s ease 1s forwards;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: rgb(31, 54, 104);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline {
+    border: 2px solid white;
+    color: white;
+    background-color: transparent;
+}
+
+.btn-outline:hover {
+    background-color: white;
+    color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.5s forwards, bounce 2s infinite 2.5s;
+}
+
+.scroll-down a {
+    color: white;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.scroll-down a:hover {
+    color: var(--primary);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+    }
+    40% {
+        transform: translateY(-15px) translateX(-50%);
+    }
+    60% {
+        transform: translateY(-7px) translateX(-50%);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .company-name {
+        font-size: 2.5rem;
+    }
+    
+    .typewriter-container {
+        font-size: 1.5rem;
+        height: 50px;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 250px;
+        text-align: center;
+    }
+}
 
         /* About Section */
-        .section {
-            padding: 100px 0;
-            position: relative;
-        }
+        
+.about-section {
+    padding: 100px 0;
+    background-color: #f9f9f9;
+    position: relative;
+}
 
-        .section-title {
-            font-size: 36px;
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-            color: var(--primary);
-        }
+.section-title {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    color: var(--primary);
+    font-weight: 700;
+}
 
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color:rgb(39, 68, 131);
-        }
+.section-title:after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: rgb(39, 68, 131);
+}
 
-        .about-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
+/* About Content */
+.about-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 70px;
+    gap: 40px;
+}
 
-        .about-text {
-            flex: 1;
-            min-width: 300px;
-            padding-right: 30px;
-        }
+.about-text {
+    flex: 1;
+    min-width: 300px;
+}
 
-        .about-image {
-            flex: 1;
-            min-width: 300px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
+.lead-text {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
 
-        .about-image img {
-            width: 100%;
-            height: auto;
-            transition: transform 0.5s ease;
-        }
+.about-text p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    color: #555;
+}
 
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
+.about-cta {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
 
-        .mission-vision {
-            display: flex;
-            margin-top: 50px;
-            flex-wrap: wrap;
-        }
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
 
-        .mission, .vision {
-            flex: 1;
-            min-width: 300px;
-            padding: 30px;
-            background-color: var(--bg-light);
-            border-radius: 10px;
-            margin: 10px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
 
-        .mission:hover, .vision:hover {
-            transform: translateY(-10px);
-        }
+.btn-primary:hover {
+    background-color: rgb(31, 54, 104);
+    transform: translateY(-3px);
+}
 
-        .values {
-            margin-top: 50px;
-        }
+.btn-outline {
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    background-color: transparent;
+}
 
-        .values-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+.btn-outline:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-3px);
+}
 
-        .value-item {
-            width: 200px;
-            margin: 20px;
-            text-align: center;
-            transition: var(--transition);
-        }
+.about-image {
+    flex: 1;
+    min-width: 300px;
+}
 
-        .value-icon {
-            width: 80px;
-            height: 80px;
-            line-height: 80px;
-            border-radius: 50%;
-            background-color: var(--primary);
-            color: white;
-            margin: 0 auto 15px;
-            font-size: 30px;
-            transition: var(--transition);
-        }
+.image-frame {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
 
-        .value-item:hover .value-icon {
-            background-color: var(--secondary);
-            transform: rotateY(180deg);
-        }
+.image-frame::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    z-index: 1;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.image-frame:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.about-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Mission and Vision */
+.mission-vision {
+    display: flex;
+    margin-bottom: 70px;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.mission, .vision {
+    flex: 1;
+    min-width: 300px;
+    padding: 35px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.mission:hover, .vision:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-header i {
+    font-size: 24px;
+    color: var(--primary);
+    margin-right: 15px;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.mission p, .vision p {
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Values Section */
+.values {
+    padding-top: 20px;
+}
+
+.values h3 {
+    font-size: 28px;
+    margin-bottom: 50px;
+    color: #333;
+}
+
+.values-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.value-item {
+    width: 200px;
+    padding: 30px 20px;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.value-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.value-icon {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    color: white;
+    margin: 0 auto 15px;
+    font-size: 26px;
+    transition: all 0.5s ease;
+}
+
+.value-item:hover .value-icon {
+    background-color: var(--secondary);
+    transform: rotateY(180deg);
+}
+
+.value-item h4 {
+    color: #333;
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+.value-item p {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Animation Classes */
+.animated {
+    opacity: 0;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.fade-in {
+    animation-name: fadeIn;
+    animation-timing-function: ease-in;
+}
+
+.slide-in-left {
+    animation-name: slideInLeft;
+    animation-timing-function: ease-out;
+}
+
+.slide-in-right {
+    animation-name: slideInRight;
+    animation-timing-function: ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Animation Delays */
+.mission {
+    animation-delay: 0.3s;
+}
+
+.vision {
+    animation-delay: 0.5s;
+}
+
+.values {
+    animation-delay: 0.7s;
+}
+
+@media (max-width: 992px) {
+    .about-content {
+        flex-direction: column;
+    }
+    
+    .about-text {
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+    
+    .mission-vision {
+        flex-direction: column;
+    }
+    
+    .mission, .vision {
+        margin-bottom: 30px;
+    }
+}
 
         /* Awards Section */
-        .awards-section {
-            background-color: #f9f9f9;
-            padding: 80px 0;
-        }
+        
+/* Clean Awards Section Styling */
+.awards-section {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+}
 
-        .awards-container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+}
 
-        .award-item {
-            width: 300px;
-            background-color: var(--bg-light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            text-align: center;
-            padding-bottom: 20px;
-        }
+.awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .award-item:hover {
-            transform: translateY(-10px);
-        }
+.award-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
 
-        .award-image {
-            height: 200px;
-            overflow: hidden;
-            cursor: pointer;
-        }
+.award-card:hover {
+    transform: translateY(-5px);
+}
 
-        .award-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
+.award-image {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
 
-        .award-content {
-            padding: 20px;
-        }
+.award-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* This crops the image to show only the top portion, hiding amounts */
+    object-position: top;
+}
 
-        .award-title {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
+.award-details {
+    padding: 20px;
+}
 
+.award-details h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 18px;
+    color: #222;
+}
+
+.award-date {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.award-details p {
+    color: #555;
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .awards-grid {
+        grid-template-columns: 1fr;
+    }
+}
        /* Certificate Section Styling */
 .certificates-section {
     padding: 80px 0;
@@ -680,63 +1083,222 @@
         }
 
         /* Team Section */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-        }
+        team-section {
+    padding: 90px 0;
+    background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+}
 
-        .team-card {
-            background-color: var(--bg-light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            text-align: center;
-        }
+.section-title {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    position: relative;
+}
 
-        .team-card:hover {
-            transform: translateY(-10px);
-        }
+.section-subtitle {
+    text-align: center;
+    color: #6c757d;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
 
-        .team-image {
-            height: 250px;
-            overflow: hidden;
-            position: relative;
-        }
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
 
-        .team-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
+.team-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
-        .team-image:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-        }
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
 
-        .team-content {
-            padding: 20px;
-        }
+.profile-wrapper {
+    position: relative;
+    padding: 25px;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    text-align: center;
+}
 
-        .team-name {
-            font-size: 20px;
-            margin-bottom: 5px;
-            color: var(--primary);
-        }
+.team-image {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+    background-color: #f8f9fa;
+}
 
-        .team-position {
-            font-size: 14px;
-            margin-bottom: 15px;
-            color: var(--secondary);
-        }
+.team-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.team-card:hover .team-image img {
+    transform: scale(1.1);
+}
+
+.social-icons {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 2;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3498db;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    background: #3498db;
+    color: white;
+    transform: translateY(-3px);
+}
+
+.team-content {
+    padding: 30px 25px 25px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.team-name {
+    margin: 0 0 5px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.team-position {
+    color: #3498db;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.divider {
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #3498db, #2c3e50);
+    margin: 0 auto 15px;
+    border-radius: 2px;
+}
+
+.team-bio {
+    color: #6c757d;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Animation classes */
+.animated {
+    opacity: 0;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.fade-in {
+    animation-name: fadeIn;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Add animation delay to each team member */
+.team-card:nth-child(1) { animation-delay: 0.1s; }
+.team-card:nth-child(2) { animation-delay: 0.2s; }
+.team-card:nth-child(3) { animation-delay: 0.3s; }
+.team-card:nth-child(4) { animation-delay: 0.4s; }
+.team-card:nth-child(5) { animation-delay: 0.5s; }
+.team-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .team-image {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+@media (max-width: 576px) {
+    .team-section {
+        padding: 60px 0;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-card {
+        max-width: 320px;
+        margin: 0 auto;
+    }
+}
+
 
         /* Contact Section */
         .contact-container {
@@ -1254,121 +1816,175 @@
         </ul>
     </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title"> WELCOME TO ...</h1>
-                <h2 class="hero-subtitle">.  .</h2>
-                <a href="#about" class="hero-btn pulse">Continue</a>
+    <!-- Home Section with Animated Text -->
+<section id="home" class="hero-section">
+    <div class="overlay"></div>
+    <video autoplay muted loop id="bg-video">
+        <source src="logo3.jpeg" type="video/mp4">
+        <!-- Fallback background image if video doesn't load -->
+    </video>
+    
+    <div class="container hero-content">
+        <div class="hero-text">
+            <h1 class="company-name">BRIMIEG ENTERPRISE LTD</h1>
+            
+            <div class="typewriter-container">
+                <span class="typewriter-prefix">We are </span>
+                <span class="typewriter-text" id="typing-text"></span>
+                <span class="typewriter-cursor">|</span>
+            </div>
+            
+            <p class="hero-description">A premier construction and consultancy company delivering exceptional projects across Kenya since 2017.</p>
+            
+            <div class="hero-cta">
+                <a href="#services" class="btn btn-primary">Our Services</a>
+                <a href="#projects" class="btn btn-outline">View Projects</a>
             </div>
         </div>
-    </section>
+    </div>
+    
+    <div class="scroll-down">
+        <a href="#about">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </div>
+</section>
 
     <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title animated">About Us</h2>
-            <div class="about-content">
-                <div class="about-text animated slide-in-left">
-                    <p>BRIMIEG ENTERPRISE COMPANY LIMITED is a locally owned Private Limited Construction and Consultancy company registered in Kenya, No. PVT-9XU3E6, certificate of Incorporation, 19 May 2017.</p>
-                    <p>The company is led by Engineer HELLEN ADHIAMBO OUKO, a professional in the field of operation, who is actively involved in the company operations as Director and manages all Projects.</p>
-                    <p>We have a solid reputation for reliability and professional expertise based on the use of varied and modern construction techniques. Our team is vibrant and dynamic, employing diligent service people who are experienced, undoubtedly skilled and knowledgeable.</p>
-                </div>
-                <div class="about-image animated slide-in-right">
-                    <img src="team.jpeg" alt="BRIMIEG Office">
-                </div>
-            </div>
-
-            <div class="mission-vision">
-                <div class="mission animated">
-                    <h3>Our Mission</h3>
-                    <p>To engineer, design and maintain quality, future-ready, sustainable and resilient facilities while offering strategic innovation, cost effective, custom client satisfaction and exceptional quality. In all dealings achieve superior financial returns for the company.</p>
-                </div>
-                <div class="vision animated">
-                    <h3>Our Vision</h3>
-                    <p>To become the most sort for building & construction firm setting benchmarks in excellence and to create an exemplary Centre in national and partner building.</p>
+    <!-- About Section -->
+<section id="about" class="section about-section">
+    <div class="container">
+        <h2 class="section-title animated fade-in">About Us</h2>
+        
+        <div class="about-content">
+            <div class="about-text animated slide-in-left">
+                <p class="lead-text">BRIMIEG ENTERPRISE COMPANY LIMITED is a locally owned Private Limited Construction and Consultancy company registered in Kenya, No. PVT-9XU3E6, certificate of Incorporation, 19 May 2017.</p>
+                
+                <p>The company is led by Engineer HELLEN ADHIAMBO OUKO, a professional in the field of operation, who is actively involved in the company operations as Director and manages all Projects.</p>
+                
+                <p>We have a solid reputation for reliability and professional expertise based on the use of varied and modern construction techniques. Our team is vibrant and dynamic, employing diligent service people who are experienced, undoubtedly skilled and knowledgeable.</p>
+                
+                <div class="about-cta">
+                    <a href="#services" class="btn btn-primary">Our Services</a>
+                    <a href="#contact" class="btn btn-outline">Contact Us</a>
                 </div>
             </div>
-
-            <div class="values animated">
-                <h3 class="text-center mb-4">Our Core Values</h3>
-                <div class="values-list">
-                    <div class="value-item float">
-                        <div class="value-icon">
-                            <i class="fas fa-award"></i>
-                        </div>
-                        <h4>Professionalism</h4>
-                    </div>
-                    <div class="value-item float">
-                        <div class="value-icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h4>Integrity</h4>
-                    </div>
-                    <div class="value-item float">
-                        <div class="value-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h4>Teamwork</h4>
-                    </div>
-                    <div class="value-item float">
-                        <div class="value-icon">
-                            <i class="fas fa-check-double"></i>
-                        </div>
-                        <h4>Quality Performance</h4>
-                    </div>
-                    <div class="value-item float">
-                        <div class="value-icon">
-                            <i class="fas fa-leaf"></i>
-                        </div>
-                        <h4>Sustainability</h4>
-                    </div>
+            
+            <div class="about-image animated slide-in-right">
+                <div class="image-frame">
+                    <img src="team.jpeg" alt="BRIMIEG Team">
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Awards Section (Completed) -->
-<section id="awards" class="section awards-section">
-    <div class="container">
-        <h2 class="section-title animated">Our Awards</h2>
-        <div class="awards-container">
-            <!-- Award 1 -->
-            <div class="award-item animated slide-in-up">
-                <div class="award-image">
-                    <img src="/rewards/award1.jpeg" alt="Excellence in Construction Award">
+        
+        <div class="mission-vision">
+            <div class="mission animated fade-in">
+                <div class="card-header">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Our Mission</h3>
                 </div>
-                <div class="award-content">
-                    <h3 class="award-title">Excellence in Construction</h3>
-                    <p>Recognized for outstanding construction quality and innovation in the Kenyan construction industry.</p>
-                </div>
+                <p>To engineer, design and maintain quality, future-ready, sustainable and resilient facilities while offering strategic innovation, cost effective, custom client satisfaction and exceptional quality. In all dealings achieve superior financial returns for the company.</p>
             </div>
-            <!-- Award 2 -->
-            <div class="award-item animated slide-in-up">
-                <div class="award-image">
-                    <img src="/rewards/award2.jpeg" alt="Sustainable Building Award">
+            
+            <div class="vision animated fade-in">
+                <div class="card-header">
+                    <i class="fas fa-eye"></i>
+                    <h3>Our Vision</h3>
                 </div>
-                <div class="award-content">
-                    <h3 class="award-title">Sustainable Building Award</h3>
-                    <p>Honored for our commitment to environmentally friendly construction practices and sustainable design.</p>
-                </div>
+                <p>To become the most sort for building & construction firm setting benchmarks in excellence and to create an exemplary Centre in national and partner building.</p>
             </div>
-            <!-- Award 3 -->
-            <div class="award-item animated slide-in-up">
-                <div class="award-image">
-                    <img src="/rewards/award3.jpeg" alt="Client Satisfaction Excellence">
+        </div>
+        
+        <div class="values animated fade-in">
+            <h3 class="text-center">Our Core Values</h3>
+            <div class="values-list">
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h4>Professionalism</h4>
+                    <p>Maintaining the highest standards in all our operations</p>
                 </div>
-                <div class="award-content">
-                    <h3 class="award-title">Client Satisfaction Excellence</h3>
-                    <p>Recognized for consistently exceeding client expectations and delivering superior project outcomes.</p>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4>Integrity</h4>
+                    <p>Honesty and transparency in all our dealings</p>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>Teamwork</h4>
+                    <p>Collaborating effectively to deliver exceptional results</p>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <h4>Quality Performance</h4>
+                    <p>Consistently exceeding expectations in every project</p>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h4>Sustainability</h4>
+                    <p>Creating solutions that respect our environment</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-
+    <section id="awards" class="section awards-section">
+        <div class="container">
+            <h2 class="section-title">Our Awards & Recognitions</h2>
+            
+            <div class="awards-grid">
+                <!-- Kisumu County Government Award -->
+                <div class="award-card">
+                    <div class="award-image">
+                        <img src="/rewards/award1.jpeg" alt="Kisumu County Government Award" class="award-img">
+                    </div>
+                    <div class="award-details">
+                        <h3>Education Development Project</h3>
+                        <p class="award-date">November 2023</p>
+                        <p>Award for successful completion of Ombugo ECD Classroom by the County Government of Kisumu, Department of Education.</p>
+                    </div>
+                </div>
+    
+                <!-- Friends College Award -->
+                <div class="award-card">
+                    <div class="award-image">
+                        <img src="/rewards/award3.jpeg" alt="Friends College Award" class="award-img">
+                    </div>
+                    <div class="award-details">
+                        <h3>Hospitality Facilities Upgrade</h3>
+                        <p class="award-date">March 2024</p>
+                        <p>Recognized for excellence in tilling works for the Food and Beverage Department at Friends College of Research and Technology, Kaimosi.</p>
+                    </div>
+                </div>
+    
+                <!-- Kaimosi Polytechnic Award -->
+                <div class="award-card">
+                    <div class="award-image">
+                        <img src="/rewards/award2.jpeg" alt="Kaimosi Polytechnic Award" class="award-img">
+                    </div>
+                    <div class="award-details">
+                        <h3>Campus Renovation Excellence</h3>
+                        <p class="award-date">February 2025</p>
+                        <p>Award for quality painting services and replacement of window panes at Kaimosi Friends National Polytechnic.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 <!-- Certificates Section -->
 <section id="certificates" class="section certificates-section">
     <div class="container">
@@ -1687,81 +2303,129 @@
         </div>
     </div>
 </section>
-    <!-- Team Section -->
-    <section id="team" class="section">
-        <div class="container">
-            <h2 class="section-title animated">Our Team</h2>
-            <div class="team-grid">
-                <!-- Engineer Hellen -->
-                <div class="team-card animated">
+<!-- Team Section -->
+<section id="team" class="section team-section">
+    <div class="container">
+        <h2 class="section-title animated">Meet Our Expert Team</h2>
+        <p class="section-subtitle animated">Dedicated professionals committed to excellence in every project</p>
+        
+        <div class="team-grid">
+            <!-- Engineer Hellen (Director) -->
+            <div class="team-card animated fade-in">
+                <div class="profile-wrapper">
                     <div class="team-image">
                         <img src="profile2.jpeg" alt="Engineer Hellen Adhiambo Ouko">
                     </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Engineer Hellen Adhiambo Ouko</h3>
-                        <p class="team-position">Director</p>
-                        <p>Bachelor in Civil Engineering with extensive experience in project management and construction.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
-                <!-- Team Member 2 -->
-                <div class="team-card animated">
-                    <div class="team-image">
-                        <img src="/logo3.jpeg" alt="OGUTU">
-                    </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Tonny Odhiambo</h3>
-                        <p class="team-position">Forman</p>
-                        <p>Bachelor in Civil and Structural Engineering Construction</p>
-                    </div>
+                <div class="team-content">
+                    <h3 class="team-name">Eng. Hellen Adhiambo Ouko</h3>
+                    <p class="team-position">Director</p>
+                    <div class="divider"></div>
+                    <p class="team-bio">Bachelor in Civil Engineering with extensive experience in project management and construction.</p>
                 </div>
-                <!-- Team Member 3 -->
-                <div class="team-card animated">
-                    <div class="team-image">
-                        <img src="/logo3.jpeg" alt="VINCENT">
-                    </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Caleb Opiyo</h3>
-                        <p class="team-position">Secretary</p>
-                        <p>Diploma in information Technology.</p>
-                    </div>
-                </div>
-                <!-- Team Member 4 -->
-                <div class="team-card animated">
-                    <div class="team-image">
-                        <img src="/logo3.jpeg" alt="FRED">
-                    </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Fred Onunga</h3>
-                        <p class="team-position">Transport Manager</p>
-                        <p>certificate in Driving</p>
-                    </div>
-                </div>
-                <!-- Team Member 5-->
-                <div class="team-card animated">
-                    <div class="team-image">
-                        <img src="/logo3.jpeg" alt="FRED">
-                    </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Dennis Omollo Ojwang'</h3>
-                        <p class="team-position">Electric Engineer</p>
-                        <p>Diploma in Electrical and Electronics</p>
-                    </div>
-                </div>
-            <!-- Team Member 6(Clackson Ager) -->
+            </div>
+            
+            <!-- Tonny Odhiambo (Foreman) -->
             <div class="team-card animated fade-in">
-                <div class="team-image">
-                    <img src="/logo3.jpeg" alt="Clackson Ager">
+                <div class="profile-wrapper">
+                    <div class="team-image">
+                        <img src="/foreman.jpeg" alt="Tonny Odhiambo">
+                    </div>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="team-content">
+                    <h3 class="team-name">Tonny Odhiambo</h3>
+                    <p class="team-position">Foreman</p>
+                    <div class="divider"></div>
+                    <p class="team-bio">Bachelor in Civil and Structural Engineering with expertise in on-site construction management.</p>
+                </div>
+            </div>
+            
+            <!-- Caleb Opiyo (Secretary) -->
+            <div class="team-card animated fade-in">
+                <div class="profile-wrapper">
+                    <div class="team-image">
+                        <img src="/logo4.jpeg" alt="Caleb Opiyo">
+                    </div>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="team-content">
+                    <h3 class="team-name">Caleb Opiyo</h3>
+                    <p class="team-position">Secretary</p>
+                    <div class="divider"></div>
+                    <p class="team-bio">Diploma in Information Technology with strong administrative and organizational skills.</p>
+                </div>
+            </div>
+            
+            <!-- Fred Onunga (Transport Manager) -->
+            <div class="team-card animated fade-in">
+                <div class="profile-wrapper">
+                    <div class="team-image">
+                        <img src="/logo3.jpeg" alt="Fred Onunga">
+                    </div>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="team-content">
+                    <h3 class="team-name">Fred Onunga</h3>
+                    <p class="team-position">Transport Manager</p>
+                    <div class="divider"></div>
+                    <p class="team-bio">Certified professional driver with expertise in logistics and fleet management.</p>
+                </div>
+            </div>
+            
+            <!-- Dennis Omollo (Electrical Engineer) -->
+            <div class="team-card animated fade-in">
+                <div class="profile-wrapper">
+                    <div class="team-image">
+                        <img src="/logo3.jpeg" alt="Dennis Omollo Ojwang">
+                    </div>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="team-content">
+                    <h3 class="team-name">Dennis Omollo Ojwang'</h3>
+                    <p class="team-position">Electrical Engineer</p>
+                    <div class="divider"></div>
+                    <p class="team-bio">Diploma in Electrical and Electronics with specialized knowledge in construction electrical systems.</p>
+                </div>
+            </div>
+            
+            <!-- Clackson Ager (IT Specialist) -->
+            <div class="team-card animated fade-in">
+                <div class="profile-wrapper">
+                    <div class="team-image">
+                        <img src="/teamsec.webp" alt="Clackson Ager">
+                    </div>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    </div>
                 </div>
                 <div class="team-content">
                     <h3 class="team-name">Clackson Ager</h3>
-                    <p class="team-position">Computer expertise</p>
-                    <p>Bachelor of Science in statistics and Programming.</p>
+                    <p class="team-position">IT Specialist</p>
+                    <div class="divider"></div>
+                    <p class="team-bio">Bachelor of Science in Statistics and Programming with expertise in technical solutions.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 
 <!-- Contact Section -->
 <section id="contact" class="section">
@@ -1928,6 +2592,71 @@
             }
         });
     });
+   // Typing Animation for Home Section
+document.addEventListener("DOMContentLoaded", function() {
+    const textElement = document.getElementById("typing-text");
+    const phrases = [
+        "Construction Experts",
+        "Professional Consultants",
+        "Building Dreams",
+        "Creating Excellence",
+        "Engineering the Future"
+    ];
+    
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100; // Base typing speed in milliseconds
+    
+    function typeText() {
+        const currentPhrase = phrases[phraseIndex];
+        
+        if (isDeleting) {
+            // Remove character
+            textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 50; // Faster when deleting
+        } else {
+            // Add character
+            textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 100; // Normal speed when typing
+        }
+        
+        // If word is complete, start deleting after delay
+        if (!isDeleting && charIndex === currentPhrase.length) {
+            isDeleting = true;
+            typingSpeed = 1500; // Pause at the end of phrase
+        } 
+        // If deletion is complete, move to next word
+        else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            typingSpeed = 500; // Pause before starting new word
+        }
+        
+        // Continue typing
+        setTimeout(typeText, typingSpeed);
+    }
+    
+    // Start the typing animation
+    setTimeout(typeText, 1000);
+    
+    // Add smooth scrolling to all links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            window.scrollTo({
+                top: targetElement.offsetTop,
+                behavior: 'smooth'
+            });
+        });
+    });
+});
 </script>
 </body>
 </html>
